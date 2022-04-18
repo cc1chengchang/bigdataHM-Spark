@@ -1,0 +1,19 @@
+
+
+Input
+[student3@emr-header-1 homework4_spark]$ hdfs dfs -ls /user/chchang/week4
+Found 3 items
+-rw-r-----   2 student3 hadoop         17 2022-04-17 01:44 /user/chchang/week4/file1
+-rw-r-----   2 student3 hadoop         11 2022-04-17 01:44 /user/chchang/week4/file2
+-rw-r-----   2 student3 hadoop         15 2022-04-17 01:44 /user/chchang/week4/file3
+
+[student3@emr-header-1 homework4_spark]$ spark-submit --master yarn --class src.main.scala.com.bigdata.SparkInvertedIndex.Driver ./SparkInvertedIndex.jar  /user/chchang/week4 /user/chchang/week4_out/out
+...
+[student3@emr-header-1 homework4_spark]$ hdfs dfs -cat /user/chchang/week4_out/out/part-00000
+(is,(file3,1), (file1,2), (file2,1))
+(what,(file2,1), (file1,1))
+[student3@emr-header-1 homework4_spark]$ hdfs dfs -cat /user/chchang/week4_out/out/part-00001
+(banana,(file3,1))
+(it,(file3,1), (file2,1), (file1,2))
+(a,(file3,1))
+[student3@emr-header-1 homework4_spark]$
